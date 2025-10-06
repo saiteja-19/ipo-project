@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IPO Application System</title>
+</head>
+<body>
+    <h1>IPO Application System</h1>
+
+    <h2>Available IPOs</h2>
+    <ul>
+        {% for ipo in ipos %}
+        <li>
+            <b>{{ ipo[1] }}</b> (₹{{ ipo[2] }} - ₹{{ ipo[3] }}, Lot: {{ ipo[4] }}, Open: {{ ipo[5] }}, Close: {{ ipo[6] }})
+            <a href="{{ url_for('apply', ipo_id=ipo[0]) }}">Apply</a>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <h2>Applications</h2>
+    <table border="1" cellpadding="5">
+        <tr>
+            <th>ID</th><th>Investor</th><th>IPO</th><th>Lots</th><th>Bid Price</th>
+            <th>Payment Mode</th><th>Payment Status</th><th>Exchange Ack</th>
+        </tr>
+        {% for a in applications %}
+        <tr>
+            <td>{{ a[0] }}</td>
+            <td>{{ a[1] }}</td>
+            <td>{{ a[2] }}</td>
+            <td>{{ a[3] }}</td>
+            <td>{{ a[4] }}</td>
+            <td>{{ a[5] }}</td>
+            <td>{{ a[6] }}</td>
+            <td>{{ a[7] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
