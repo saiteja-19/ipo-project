@@ -1,39 +1,31 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>IPO Application System</title>
-</head>
-<body>
-    <h1>IPO Application System</h1>
+{% extends 'base.html' %}
 
-    <h2>Available IPOs</h2>
-    <ul>
-        {% for ipo in ipos %}
-        <li>
-            <b>{{ ipo[1] }}</b> (₹{{ ipo[2] }} - ₹{{ ipo[3] }}, Lot: {{ ipo[4] }}, Open: {{ ipo[5] }}, Close: {{ ipo[6] }})
-            <a href="{{ url_for('apply', ipo_id=ipo[0]) }}">Apply</a>
-        </li>
-        {% endfor %}
-    </ul>
+{% block content %}
+<div class="text-center mb-10">
+    <h1 class="text-4xl font-extrabold text-gray-900">Available IPOs</h1>
+    <p class="mt-2 text-lg text-gray-600">Browse and apply for upcoming Initial Public Offerings.</p>
+</div>
 
-    <h2>Applications</h2>
-    <table border="1" cellpadding="5">
-        <tr>
-            <th>ID</th><th>Investor</th><th>IPO</th><th>Lots</th><th>Bid Price</th>
-            <th>Payment Mode</th><th>Payment Status</th><th>Exchange Ack</th>
-        </tr>
-        {% for a in applications %}
-        <tr>
-            <td>{{ a[0] }}</td>
-            <td>{{ a[1] }}</td>
-            <td>{{ a[2] }}</td>
-            <td>{{ a[3] }}</td>
-            <td>{{ a[4] }}</td>
-            <td>{{ a[5] }}</td>
-            <td>{{ a[6] }}</td>
-            <td>{{ a[7] }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-</body>
-</html>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    {% for ipo in ipos %}
+    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+        <div class="p-6">
+            <h2 class="text-2xl font-bold text-indigo-700">{{ ipo.company_name }}</h2>
+            <div class="mt-4 space-y-2">
+                <p><strong>Price Band:</strong> {{ ipo.issue_price }}</p>
+                <p><strong>Lot Size:</strong> {{ ipo.lot_size }} Shares</p>
+                <p><strong>Open Date:</strong> {{ ipo.open_date }}</p>
+                <p><strong>Close Date:</strong> {{ ipo.close_date }}</p>
+            </div>
+            <div class="mt-6">
+                <a href="/apply/{{ ipo.id }}" class="w-full text-center bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-indigo-700 transition-colors duration-300 block">
+                    Apply Now
+                </a>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <p class="col-span-full text-center text-gray-500">No IPOs available at the moment.</p>
+    {% endfor %}
+</div>
+{% endblock %}

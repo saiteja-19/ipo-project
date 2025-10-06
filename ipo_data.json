@@ -1,0 +1,26 @@
+[
+    {
+      "id": 1,
+      "company_name": "Tech Innovators Inc.",
+      "issue_price": "₹250 - ₹265",
+      "lot_size": 55,
+      "open_date": "2025-10-10",
+      "close_date": "2025-10-14"
+    },
+    {
+      "id": 2,
+      "company_name": "Green Energy Solutions",
+      "issue_price": "₹420 - ₹435",
+      "lot_size": 34,
+      "open_date": "2025-10-15",
+      "close_date": "2025-10-19"
+    },
+    {
+      "id": 3,
+      "company_name": "HealthFirst Pharma",
+      "issue_price": "₹870 - ₹882",
+      "lot_size": 17,
+      "open_date": "2025-10-22",
+      "close_date": "2025-10-26"
+    }
+  ]
