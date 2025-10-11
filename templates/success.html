@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Success | IPO System</title>
-    <link rel="stylesheet" href="/static/style.css">
-</head>
-<body>
+{% extends "base.html" %}
+{% block content %}
+<div class="success-box">
     <h2>{{ message }}</h2>
-    <a href="/">Go Home</a>
-</body>
-</html>
+    <a href="{{ redirect_url }}" class="btn">Continue</a>
+</div>
+{% endblock %}

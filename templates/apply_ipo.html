@@ -1,29 +1,15 @@
-{% extends 'base.html' %}
-
+{% extends "base.html" %}
 {% block content %}
-<div class="max-w-lg mx-auto bg-white p-8 rounded-lg shadow-lg">
-    <h1 class="text-3xl font-bold mb-2">Apply for {{ ipo.company_name }}</h1>
-    <p class="text-gray-600 mb-6">Fill in your details below to submit your application.</p>
-    
-    <form method="POST">
-        <div class="mb-4">
-            <label for="name" class="block text-gray-700 font-bold mb-2">Full Name</label>
-            <input type="text" id="name" name="name" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
-        </div>
+<h2>Apply for {{ ipo['company_name'] }}</h2>
 
-        <div class="mb-4">
-            <label for="email" class="block text-gray-700 font-bold mb-2">Email Address</label>
-            <input type="email" id="email" name="email" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
-        </div>
+<p><strong>Issue Price:</strong> {{ ipo['issue_price'] }}</p>
+<p><strong>Lot Size:</strong> {{ ipo['lot_size'] }}</p>
+<p><strong>Open Date:</strong> {{ ipo['open_date'] }}</p>
+<p><strong>Close Date:</strong> {{ ipo['close_date'] }}</p>
 
-        <div class="mb-6">
-            <label for="lots" class="block text-gray-700 font-bold mb-2">Number of Lots (Lot Size: {{ ipo.lot_size }})</label>
-            <input type="number" id="lots" name="lots" min="1" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
-        </div>
-
-        <button type="submit" class="w-full bg-green-500 text-white font-bold py-3 px-4 rounded-lg hover:bg-green-600 transition-colors duration-300">
-            Submit Application
-        </button>
-    </form>
-</div>
+<form method="POST">
+    <label>Number of Lots:</label>
+    <input type="number" name="lots" min="1" required>
+    <button type="submit">Submit Application</button>
+</form>
 {% endblock %}

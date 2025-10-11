@@ -1,31 +1,20 @@
-{% extends 'base.html' %}
-
+{% extends "base.html" %}
 {% block content %}
-<div class="text-center mb-10">
-    <h1 class="text-4xl font-extrabold text-gray-900">Available IPOs</h1>
-    <p class="mt-2 text-lg text-gray-600">Browse and apply for upcoming Initial Public Offerings.</p>
-</div>
+<h2>Available IPOs</h2>
 
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="ipo-list">
     {% for ipo in ipos %}
-    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
-        <div class="p-6">
-            <h2 class="text-2xl font-bold text-indigo-700">{{ ipo.company_name }}</h2>
-            <div class="mt-4 space-y-2">
-                <p><strong>Price Band:</strong> {{ ipo.issue_price }}</p>
-                <p><strong>Lot Size:</strong> {{ ipo.lot_size }} Shares</p>
-                <p><strong>Open Date:</strong> {{ ipo.open_date }}</p>
-                <p><strong>Close Date:</strong> {{ ipo.close_date }}</p>
-            </div>
-            <div class="mt-6">
-                <a href="/apply/{{ ipo.id }}" class="w-full text-center bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-indigo-700 transition-colors duration-300 block">
-                    Apply Now
-                </a>
-            </div>
+        <div class="ipo-card">
+            <h3>{{ ipo['company_name'] }}</h3>
+            <p><strong>Price:</strong> {{ ipo['issue_price'] }}</p>
+            <p><strong>Lot Size:</strong> {{ ipo['lot_size'] }}</p>
+            <p><strong>Open:</strong> {{ ipo['open_date'] }} | <strong>Close:</strong> {{ ipo['close_date'] }}</p>
+            {% if 'company_id' in session %}
+                <a href="{{ url_for('apply_ipo_page', ipo_id=ipo['id']) }}" class="btn">Apply</a>
+            {% else %}
+                <p><em>Login to apply</em></p>
+            {% endif %}
         </div>
-    </div>
-    {% else %}
-    <p class="col-span-full text-center text-gray-500">No IPOs available at the moment.</p>
     {% endfor %}
 </div>
 {% endblock %}

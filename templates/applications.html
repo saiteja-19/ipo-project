@@ -1,41 +1,25 @@
-{% extends 'base.html' %}
-{% block title %}All IPO Applications{% endblock %}
-
+{% extends "base.html" %}
 {% block content %}
-<div class="bg-white p-8 rounded-xl shadow-lg">
-    <div class="flex justify-between items-center mb-6">
-        <h1 class="text-3xl font-extrabold text-gray-900">Submitted IPO Applications</h1>
-    </div>
-    
-    <div class="overflow-x-auto">
-        <table class="min-w-full bg-white border">
-            <thead class="bg-gray-100">
-                <tr>
-                    <th class="py-3 px-4 text-left font-semibold text-gray-700">Company Name</th>
-                    <th class="py-3 px-4 text-left font-semibold text-gray-700">Financial Details Summary</th>
-                    <th class="py-3 px-4 text-left font-semibold text-gray-700">Documents Link</th>
-                    <th class="py-3 px-4 text-left font-semibold text-gray-700">Status</th>
-                </tr>
-            </thead>
-            <tbody class="text-gray-600">
-                {% for app in applications %}
-                <tr class="border-b hover:bg-gray-50">
-                    <td class="py-3 px-4 font-medium text-gray-800">{{ app.company_name }}</td>
-                    <td class="py-3 px-4 text-sm">{{ app.financial_details | truncate(80) }}</td>
-                    <td class="py-3 px-4 text-sm">{{ app.documents | truncate(80) }}</td>
-                    <td class="py-3 px-4">
-                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                            {{ app.status }}
-                        </span>
-                    </td>
-                </tr>
-                {% else %}
-                <tr>
-                    <td colspan="4" class="text-center py-6 text-gray-500">No applications have been submitted yet.</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-</div>
+<h2>My IPO Applications</h2>
+
+{% if applications %}
+<table>
+    <tr>
+        <th>Company</th>
+        <th>Price</th>
+        <th>Lots Applied</th>
+        <th>Status</th>
+    </tr>
+    {% for app in applications %}
+    <tr>
+        <td>{{ app['company_name'] }}</td>
+        <td>{{ app['issue_price'] }}</td>
+        <td>{{ app['lots_applied'] }}</td>
+        <td>{{ app['status'] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>No applications found.</p>
+{% endif %}
 {% endblock %}
