@@ -15,13 +15,15 @@
                 <p><strong>Close:</strong> {{ ipo['close_date'] }}</p>
             </div>
             <div class="ipo-card-footer">
-                {% if 'company_id' in session %}
-                    <a href="{{ url_for('apply_ipo_page', ipo_id=ipo['id']) }}" class="btn">Apply Now</a>
-                {% else %}
-                    <em>Login to apply</em>
+                {% if session.user_type == 'candidate' %}
+                    <a href="{{ url_for('candidate.apply_ipo', ipo_id=ipo['id']) }}" class="btn">Apply Now</a>
+                {% elif not session.user_type %}
+                    <a href="{{ url_for('candidate.login') }}" class="btn">Login as Candidate to Apply</a>
                 {% endif %}
             </div>
         </div>
+    {% else %}
+        <p>No IPOs are currently available.</p>
     {% endfor %}
 </div>
 {% endblock %}

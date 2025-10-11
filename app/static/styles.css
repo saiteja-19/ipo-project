@@ -273,3 +273,34 @@ footer {
     color: var(--text-color-light);
     margin-top: 60px;
 }
+
+/* --- Status Badge Colors --- */
+.status-badge.status-pending { background-color: var(--pending-color); }
+.status-badge.status-approved { background-color: var(--success-color); }
+.status-badge.status-rejected { background-color: var(--error-color); }
+
+/* --- Action Buttons for Tables --- */
+.btn-action {
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: none;
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-approve {
+    background-color: #10b981; /* success-color */
+}
+.btn-approve:hover {
+    background-color: #059669;
+}
+
+.btn-reject {
+    background-color: #ef4444; /* error-color */
+}
+.btn-reject:hover {
+    background-color: #dc2626;
+}

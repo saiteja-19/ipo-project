@@ -11,21 +11,34 @@
 </head>
 <body>
     <nav class="navbar">
-        <div class="nav-brand">IPO Portal</div>
+        <div class="nav-brand">
+            <a href="{{ url_for('main.index') }}" style="color: white; text-decoration: none;">IPO Portal</a>
+        </div>
         <div class="nav-links">
-            <a href="{{ url_for('index') }}">Home</a>
-            {% if 'company_id' in session %}
-                <a href="{{ url_for('view_applications') }}">My Applications</a>
-                <a href="{{ url_for('logout') }}">Logout</a>
+            <a href="{{ url_for('main.index') }}">Home</a>
+            
+            {% if session.user_type == 'company' %}
+                <a href="{{ url_for('company.dashboard') }}">My Dashboard</a>
+                <a href="{{ url_for('company.list_ipo') }}">List New IPO</a>
+                <a href="{{ url_for('main.logout') }}">Logout ({{ session.user_name }})</a>
+
+            {% elif session.user_type == 'candidate' %}
+                <a href="{{ url_for('candidate.my_applications') }}">My Applications</a>
+                <a href="{{ url_for('main.logout') }}">Logout ({{ session.user_name }})</a>
+
             {% else %}
-                <a href="{{ url_for('register') }}">Register</a>
-                <a href="{{ url_for('login_page') }}">Login</a>
+                <a href="{{ url_for('company.login') }}">Company Login</a>
+                <a href="{{ url_for('candidate.login') }}">Candidate Login</a>
             {% endif %}
         </div>
     </nav>
+
     <main class="container">
         {% block content %}{% endblock %}
     </main>
-    <footer> ... </footer>
+
+    <footer>
+        <p>© 2025 IPO Portal | Designed by Munna</p>
+    </footer>
 </body>
 </html>

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Applications for "{{ ipo['company_name'] }}" IPO</h2>
+
+{% if applications %}
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>Candidate Name</th>
+                <th>Lots Applied</th>
+                <th>Status</th>
+                <th style="text-align: center;">Actions</th> </tr>
+        </thead>
+        <tbody>
+            {% for app in applications %}
+            <tr>
+                <td>{{ app['candidate_name'] }}</td>
+                <td>{{ app['lots_applied'] }}</td>
+                <td>
+                    <span class="status-badge status-{{ app['status']|lower }}">{{ app['status'] }}</span>
+                </td>
+                <td style="text-align: center;">
+                    {% if app['status'] == 'Pending' %}
+                    <form method="POST" action="{{ url_for('company.update_application_status', application_id=app['id']) }}" style="display: inline-block;">
+                        <input type="hidden" name="status" value="Approved">
+                        <button type="submit" class="btn-action btn-approve">Approve</button>
+                    </form>
+                    <form method="POST" action="{{ url_for('company.update_application_status', application_id=app['id']) }}" style="display: inline-block;">
+                        <input type="hidden" name="status" value="Rejected">
+                        <button type="submit" class="btn-action btn-reject">Reject</button>
+                    </form>
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+    {% endif %}
+{% endblock %}

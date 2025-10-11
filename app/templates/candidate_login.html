@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="form-container">
+    <h2>Candidate Login</h2>
+    {% if error %}<p class="error">{{ error }}</p>{% endif %}
+    <form method="POST">
+        <div class="form-group"><input type="email" name="email" placeholder="Your Email" required></div>
+        <div class="form-group"><input type="password" name="password" placeholder="Password" required></div>
+        <button type="submit">Login</button>
+    </form>
+    <p style="text-align: center; margin-top: 15px;">
+        Don't have an account? <a href="{{ url_for('candidate.register') }}">Register here</a>.
+    </p>
+</div>
+{% endblock %}

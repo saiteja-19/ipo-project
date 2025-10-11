@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="form-container">
+    <h2>Candidate Registration</h2>
+    <p>Create an account to apply for available IPOs.</p>
+    {% if error %}<p class="error">{{ error }}</p>{% endif %}
+    <form method="POST">
+        <div class="form-group"><input type="text" name="name" placeholder="Full Name" required></div>
+        <div class="form-group"><input type="email" name="email" placeholder="Email Address" required></div>
+        <div class="form-group"><input type="password" name="password" placeholder="Password" required></div>
+        <button type="submit">Create Account</button>
+    </form>
+    <p style="text-align: center; margin-top: 15px;">
+        Already have an account? <a href="{{ url_for('candidate.login') }}">Login here</a>.
+    </p>
+</div>
+{% endblock %}

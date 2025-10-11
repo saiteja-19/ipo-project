@@ -20,7 +20,8 @@
                 <td>{{ app['issue_price'] }}</td>
                 <td>{{ app['lots_applied'] }}</td>
                 <td>
-                    <span class="status-badge status-pending">{{ app['status'] }}</span>
+                    <!-- <span class="status-badge status-pending">{{ app['status'] }}</span> -->
+                    <span class="status-badge status-{{ app['status']|lower }}">{{ app['status'] }}</span>
                 </td>
             </tr>
             {% endfor %}

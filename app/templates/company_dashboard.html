@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Welcome, {{ session.user_name }}!</h2>
+<h3>Your Listed IPOs</h3>
+{% if ipos %}
+<div class="ipo-list">
+    {% for ipo in ipos %}
+    <div class="ipo-card">
+        <div class="ipo-card-header"><h3>{{ ipo['company_name'] }}</h3></div>
+        <div class="ipo-card-body">
+            <p><strong>Price:</strong> {{ ipo['issue_price'] }}</p>
+            <p><strong>Lot Size:</strong> {{ ipo['lot_size'] }}</p>
+            <p><strong>Window:</strong> {{ ipo['open_date'] }} to {{ ipo['close_date'] }}</p>
+        </div>
+         <div class="ipo-card-footer">
+            <a href="{{ url_for('company.view_ipo_applications', ipo_id=ipo['id']) }}" class="btn">View Applications</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="form-container">
+    <p>You have not listed any IPOs yet.</p>
+    <a href="{{ url_for('company.list_ipo') }}" class="btn">List Your First IPO</a>
+</div>
+{% endif %}
+{% endblock %}

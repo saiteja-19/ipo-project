@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="form-container">
+    <h2>Company Registration</h2>
+    <p>Register your company to list new IPOs on the portal.</p>
+    {% if error %}<p class="error">{{ error }}</p>{% endif %}
+    <form method="POST">
+        <div class="form-group"><input type="text" name="name" placeholder="Company Name" required></div>
+        <div class="form-group"><input type="text" name="cin" placeholder="CIN Number" required></div>
+        <div class="form-group"><input type="email" name="email" placeholder="Official Email" required></div>
+        <div class="form-group"><input type="password" name="password" placeholder="Password" required></div>
+        <div class="form-group"><input type="text" name="sector" placeholder="Sector (e.g., IT, Pharma)" required></div>
+        <button type="submit">Register Company</button>
+    </form>
+    <p style="text-align: center; margin-top: 15px;">
+        Already registered? <a href="{{ url_for('company.login') }}">Login here</a>.
+    </p>
+</div>
+{% endblock %}
