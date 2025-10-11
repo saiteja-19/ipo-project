@@ -8,19 +8,27 @@
             <div class="ipo-card-header">
                 <h3>{{ ipo['company_name'] }}</h3>
             </div>
-            <div class="ipo-card-body">
-                <p><strong>Price:</strong> {{ ipo['issue_price'] }}</p>
-                <p><strong>Lot Size:</strong> {{ ipo['lot_size'] }} shares</p>
-                <p><strong>Open:</strong> {{ ipo['open_date'] }}</p>
-                <p><strong>Close:</strong> {{ ipo['close_date'] }}</p>
-            </div>
-            <div class="ipo-card-footer">
-                {% if session.user_type == 'candidate' %}
-                    <a href="{{ url_for('candidate.apply_ipo', ipo_id=ipo['id']) }}" class="btn">Apply Now</a>
-                {% elif not session.user_type %}
-                    <a href="{{ url_for('candidate.login') }}" class="btn">Login as Candidate to Apply</a>
-                {% endif %}
-            </div>
+           <div class="ipo-card-body">
+    <p><strong>Price:</strong> {{ ipo['issue_price'] }}</p>
+    <p><strong>Lot Size:</strong> {{ ipo['lot_size'] }} shares</p>
+
+    {% set remaining_lots = ipo['total_lots'] - ipo['approved_lots'] %}
+    <p><strong>Lots Available:</strong> {{ remaining_lots }} / {{ ipo['total_lots'] }}</p>
+
+    <p><strong>Open:</strong> {{ ipo['open_date'] }}</p>
+    <p><strong>Close:</strong> {{ ipo['close_date'] }}</p>
+</div>
+<div class="ipo-card-footer">
+    {% if remaining_lots > 0 %}
+        {% if session.user_type == 'candidate' %}
+            <a href="{{ url_for('candidate.apply_ipo', ipo_id=ipo['id']) }}" class="btn">Apply Now</a>
+        {% elif not session.user_type %}
+            <a href="{{ url_for('candidate.login') }}" class="btn">Login as Candidate to Apply</a>
+        {% endif %}
+    {% else %}
+        <p><em>Fully Subscribed</em></p>
+    {% endif %}
+</div>
         </div>
     {% else %}
         <p>No IPOs are currently available.</p>
