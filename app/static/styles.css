@@ -1,0 +1,275 @@
+/* static/styles.css */
+
+/* --- Google Font Import --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* --- CSS Variables for Easy Theme Management --- */
+:root {
+    --primary-color: #0f172a;
+    --secondary-color: #1e293b;
+    --accent-gradient: linear-gradient(90deg, #22d3ee, #06b6d4);
+    --accent-color-hover: #0891b2;
+    --text-color-light: #f1f5f9;
+    --text-color-dark: #334155;
+    --background-color: #f0f2f5;
+    --card-background: #ffffff;
+    --border-color: #e2e8f0;
+    --success-color: #10b981;
+    --error-color: #ef4444;
+    --pending-color: #f59e0b;
+    --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* --- General Body & Resets --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color-dark);
+    line-height: 1.6;
+}
+
+/* --- Navigation Bar --- */
+.navbar {
+    background-color: var(--primary-color);
+    color: var(--text-color-light);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.nav-brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.nav-links a {
+    color: var(--text-color-light);
+    text-decoration: none;
+    margin-left: 1.5rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #22d3ee;
+}
+
+/* --- Main Content Container --- */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 15px;
+}
+
+h2 {
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+/* --- Form Styling --- */
+.form-container {
+    max-width: 450px;
+    margin: 20px auto;
+    padding: 30px;
+    background: var(--card-background);
+    border-radius: 12px;
+    box-shadow: var(--box-shadow);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"] {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus {
+    outline: none;
+    border-color: #06b6d4;
+    box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2);
+}
+
+/* --- Button Styling --- */
+.btn, button[type="submit"] {
+    display: inline-block;
+    width: 100%;
+    padding: 12px 20px;
+    border-radius: 8px;
+    border: none;
+    background: var(--accent-gradient);
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn:hover, button[type="submit"]:hover {
+    background: var(--accent-color-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* --- IPO Card Listing --- */
+.ipo-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.ipo-card {
+    background: var(--card-background);
+    border-radius: 12px;
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ipo-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.ipo-card-header {
+    background: var(--secondary-color);
+    color: var(--text-color-light);
+    padding: 15px 20px;
+}
+
+.ipo-card-header h3 {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.ipo-card-body {
+    padding: 20px;
+}
+
+.ipo-card-body p {
+    margin-bottom: 10px;
+    color: var(--text-color-dark);
+}
+
+.ipo-card-footer {
+    padding: 0 20px 20px;
+}
+
+.ipo-card-footer .btn {
+    width: auto;
+    font-size: 1rem;
+}
+
+.ipo-card-footer em {
+    color: #64748b;
+}
+
+/* --- Table for Applications --- */
+.table-container {
+    background: var(--card-background);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: var(--box-shadow);
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+thead th {
+    background-color: #f8fafc;
+    color: var(--text-color-dark);
+    font-weight: 600;
+}
+
+tbody tr:hover {
+    background-color: #f1f5f9;
+}
+
+/* --- Status Badge --- */
+.status-badge {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: white;
+}
+
+.status-pending {
+    background-color: var(--pending-color);
+}
+
+/* Add other statuses if needed */
+.status-approved {
+    background-color: var(--success-color);
+}
+
+/* --- Utility & Message Classes --- */
+.error {
+    color: var(--error-color);
+    text-align: center;
+    background: rgba(239, 68, 68, 0.1);
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.success-box {
+    text-align: center;
+    background: var(--card-background);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: var(--box-shadow);
+    max-width: 500px;
+    margin: 40px auto;
+}
+
+.success-box .btn {
+    width: auto;
+    margin-top: 20px;
+}
+
+/* --- Footer --- */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: var(--primary-color);
+    color: var(--text-color-light);
+    margin-top: 60px;
+}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Available IPOs</h2>
+
+<div class="ipo-list">
+    {% for ipo in ipos %}
+        <div class="ipo-card">
+            <div class="ipo-card-header">
+                <h3>{{ ipo['company_name'] }}</h3>
+            </div>
+            <div class="ipo-card-body">
+                <p><strong>Price:</strong> {{ ipo['issue_price'] }}</p>
+                <p><strong>Lot Size:</strong> {{ ipo['lot_size'] }} shares</p>
+                <p><strong>Open:</strong> {{ ipo['open_date'] }}</p>
+                <p><strong>Close:</strong> {{ ipo['close_date'] }}</p>
+            </div>
+            <div class="ipo-card-footer">
+                {% if 'company_id' in session %}
+                    <a href="{{ url_for('apply_ipo_page', ipo_id=ipo['id']) }}" class="btn">Apply Now</a>
+                {% else %}
+                    <em>Login to apply</em>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

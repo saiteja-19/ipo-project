@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>My IPO Applications</h2>
+
+{% if applications %}
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>Company</th>
+                <th>Price</th>
+                <th>Lots Applied</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for app in applications %}
+            <tr>
+                <td>{{ app['company_name'] }}</td>
+                <td>{{ app['issue_price'] }}</td>
+                <td>{{ app['lots_applied'] }}</td>
+                <td>
+                    <span class="status-badge status-pending">{{ app['status'] }}</span>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<div class="form-container">
+    <p>You have not applied for any IPOs yet.</p>
+</div>
+{% endif %}
+{% endblock %}
