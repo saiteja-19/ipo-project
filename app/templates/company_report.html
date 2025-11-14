@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Allotment Report: {{ ipo['company_name'] }}</h2>
+
+<div class="report-container">
+    <div class="report-header">
+        <h3>IPO Summary</h3>
+        <p><strong>Price:</strong> {{ ipo['issue_price'] }}</p>
+        <p><strong>Lot Size:</strong> {{ ipo['lot_size'] }} shares</p>
+    </div>
+
+    <!-- Overall Subscription Status -->
+    <div class="report-card subscription-card">
+        <h4>Overall Subscription</h4>
+        <div class="report-stat">
+            <span>Total Lots Offered:</span>
+            <strong>{{ ipo['total_lots'] }}</strong>
+        </div>
+        <div class="report-stat">
+            <span>Total Lots Applied For:</span>
+            <strong>{{ report['total_lots_applied'] }}</strong>
+        </div>
+        <!-- Calculate Over/Under Subscription -->
+        {% if ipo['total_lots'] > 0 %}
+            {% set subscription_rate = (report['total_lots_applied'] / ipo['total_lots']) | round(2) %}
+            <div class="report-stat">
+                <span>Subscription Rate:</span>
+                <strong style="color: var(--primary-color);">{{ subscription_rate }}x</strong>
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- Application Status Breakdown -->
+    <div class="report-card">
+        <h4>Application Status</h4>
+        <div class="report-stat">
+            <span>Total Applications Received:</span>
+            <strong>{{ report['total_applications'] }}</strong>
+        </div>
+        <div class="report-stat status-approved">
+            <span>Lots Approved:</span>
+            <strong>{{ report['approved_lots'] }}</strong>
+        </div>
+        <div class="report-stat status-rejected">
+            <span>Lots Rejected:</span>
+            <strong>{{ report['rejected_lots'] }}</strong>
+        </div>
+        <div class="report-stat status-pending">
+            <span>Lots Pending Review:</span>
+            <strong>{{ report['pending_lots'] }}</strong>
+        </div>
+    </div>
+</div>
+
+<div style="text-align: center; margin-top: 30px;">
+    <a href="{{ url_for('company.dashboard') }}" class="btn btn-secondary" style="width: auto;">Back to Dashboard</a>
+</div>
+{% endblock %}

@@ -20,8 +20,14 @@
                 <td>{{ app['issue_price'] }}</td>
                 <td>{{ app['lots_applied'] }}</td>
                 <td>
-                    <!-- <span class="status-badge status-pending">{{ app['status'] }}</span> -->
-                    <span class="status-badge status-{{ app['status']|lower }}">{{ app['status'] }}</span>
+                    <!-- 👇 MODIFIED LOGIC HERE 👇 -->
+                    {% if app['status'] == 'Approved' %}
+                        <!-- If Approved, show a button -->
+                        <a href="{{ url_for('candidate.view_allotment', application_id=app['application_id']) }}" class="btn-action btn-approve">View Allotment</a>
+                    {% else %}
+                        <!-- Otherwise, show the status badge -->
+                        <span class="status-badge status-{{ app['status']|lower }}">{{ app['status'] }}</span>
+                    {% endif %}
                 </td>
             </tr>
             {% endfor %}

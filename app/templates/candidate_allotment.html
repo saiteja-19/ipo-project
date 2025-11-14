@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Allotment Confirmation</h2>
+
+<div class="report-container">
+    <div class="report-header">
+        <h3>Congratulations, {{ session.user_name }}!</h3>
+        <p>Your allotment for the {{ allotment['company_name'] }} IPO has been confirmed.</p>
+    </div>
+
+    <!-- Allotment Details -->
+    <div class="report-card">
+        <h4>Allotment Details</h4>
+        <div class="report-stat">
+            <span>IPO / Company Name:</span>
+            <strong>{{ allotment['company_name'] }}</strong>
+        </div>
+        <div class="report-stat">
+            <span>Issue Price:</span>
+            <strong>{{ allotment['issue_price'] }}</strong>
+        </div>
+        <div class="report-stat">
+            <span>Lot Size:</span>
+            <strong>{{ allotment['lot_size'] }} shares per lot</strong>
+        </div>
+    </div>
+
+    <!-- Your Share -->
+    <div class="report-card subscription-card">
+        <h4>Your Confirmed Allotment</h4>
+        <div class="report-stat">
+            <span>Lots Applied For:</span>
+            <strong>{{ allotment['lots_applied'] }}</strong>
+        </div>
+        <div class="report-stat status-approved">
+            <span>Lots Allotted:</span>
+            <strong>{{ allotment['lots_applied'] }}</strong>
+        </div>
+        {% set total_shares = allotment['lots_applied'] * allotment['lot_size'] %}
+        <div class-="report-stat">
+            <span>Total Shares Allotted:</span>
+            <strong>{{ total_shares }} shares</strong>
+        </div>
+    </div>
+</div>
+
+<div style="text-align: center; margin-top: 30px;">
+    <a href="{{ url_for('candidate.my_applications') }}" class="btn btn-secondary" style="width: auto;">Back to Applications</a>
+</div>
+{% endblock %}

@@ -7,12 +7,13 @@
         <p><strong>Issue Price:</strong> {{ ipo['issue_price'] }}</p>
         <p><strong>Lot Size:</strong> {{ ipo['lot_size'] }} shares</p>
         <p><strong>Application Window:</strong> {{ ipo['open_date'] }} to {{ ipo['close_date'] }}</p>
+        <p><strong>Lots Available:</strong> {{ remaining_lots }}</p>
     </div>
 
     <form method="POST">
         <div class="form-group">
             <label for="lots">Number of Lots:</label>
-            <input type="number" id="lots" name="lots" min="1" required placeholder="e.g., 1">
+            <input type="number" id="lots" name="lots" min="1" max="{{ remaining_lots }}" required placeholder="e.g., 1">
         </div>
         <button type="submit">Submit Application</button>
     </form>
